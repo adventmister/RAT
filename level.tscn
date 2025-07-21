@@ -1,0 +1,540 @@
+[gd_scene load_steps=26 format=3 uid="uid://di4l8vaya8i54"]
+
+[ext_resource type="Script" uid="uid://dtk2srxk4xxp4" path="res://control.gd" id="1_0b4ue"]
+[ext_resource type="Script" uid="uid://b03c5xmv5q8bf" path="res://level.gd" id="1_8cye3"]
+[ext_resource type="Texture2D" uid="uid://cn60mbbm1osum" path="res://Sprites/wallpapersw/bliss.jpg" id="2_aicyk"]
+[ext_resource type="Script" uid="uid://djcbynyjxy1v3" path="res://button.gd" id="2_oi3di"]
+[ext_resource type="PackedScene" uid="uid://wr68uqgtq062" path="res://player.tscn" id="2_vonw3"]
+[ext_resource type="Texture2D" uid="uid://cgpng7h6oianq" path="res://Sprites/trashcan.png" id="4_f2txt"]
+[ext_resource type="PackedScene" uid="uid://dqd45hj0f76vq" path="res://antivirus.tscn" id="6_1ainy"]
+[ext_resource type="Texture2D" uid="uid://b0e1rndsensqp" path="res://Sprites/xbutton.png" id="6_km5ld"]
+[ext_resource type="Script" uid="uid://blb401mj5o7mo" path="res://time.gd" id="7_i2t4f"]
+[ext_resource type="Texture2D" uid="uid://0hxvu0ol62re" path="res://icon.svg" id="8_2orkt"]
+[ext_resource type="Texture2D" uid="uid://dkar30cua41lg" path="res://Sprites/wallpapersw/blisscompressed.jpg" id="9_aicyk"]
+[ext_resource type="Texture2D" uid="uid://bqdrlhdjhiti2" path="res://Sprites/wallpapersw/paintingcompressed.jpeg" id="10_8b0r0"]
+[ext_resource type="AudioStream" uid="uid://g5iue0y47ciq" path="res://sfx/info.mp3" id="13_8b0r0"]
+[ext_resource type="AudioStream" uid="uid://i4oxfr63qg3k" path="res://sfx/startup.mp3" id="14_h6smj"]
+[ext_resource type="AudioStream" uid="uid://pbdhhuy6shuw" path="res://sfx/flute section.mp3" id="15_v5j5c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ainy"]
+size = Vector2(120, 192)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oi3di"]
+size = Vector2(408, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6hdu"]
+size = Vector2(72, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_km5ld"]
+size = Vector2(408, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i2t4f"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8cye3"]
+size = Vector2(418, 146)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2orkt"]
+size = Vector2(89, 89)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aicyk"]
+size = Vector2(384, 512)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6smj"]
+size = Vector2(96, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8b0r0"]
+size = Vector2(328, 184)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_8cye3")
+
+[node name="wallpaper" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("2_aicyk")
+
+[node name="trash" type="Node2D" parent="."]
+position = Vector2(64, 80)
+
+[node name="Sprite2D" type="Sprite2D" parent="trash"]
+scale = Vector2(0.16, 0.186667)
+texture = ExtResource("4_f2txt")
+
+[node name="Area2D" type="Area2D" parent="trash"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="trash/Area2D"]
+position = Vector2(-4, 16)
+shape = SubResource("RectangleShape2D_1ainy")
+
+[node name="Label" type="Label" parent="trash"]
+offset_left = -24.0
+offset_top = 56.0
+offset_right = 20.0
+offset_bottom = 79.0
+text = "Trash"
+metadata/_edit_use_anchors_ = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_0b4ue")
+
+[node name="taskbar" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_top = 955.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.233942, 0.386268, 0.61394, 1)
+
+[node name="startButton" type="Button" parent="Control/taskbar"]
+layout_mode = 0
+offset_right = 406.0
+offset_bottom = 125.0
+theme_override_font_sizes/font_size = 75
+text = "START"
+script = ExtResource("2_oi3di")
+
+[node name="Area2D" type="Area2D" parent="Control/taskbar/startButton" groups=["isButton"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/taskbar/startButton/Area2D"]
+position = Vector2(204, 61)
+shape = SubResource("RectangleShape2D_oi3di")
+
+[node name="startMenu" type="ColorRect" parent="Control"]
+visible = false
+layout_mode = 0
+offset_top = 432.0
+offset_right = 408.0
+offset_bottom = 960.0
+color = Color(0.649988, 0.386122, 0.510774, 1)
+
+[node name="Label" type="Label" parent="Control/startMenu"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 322.0
+offset_bottom = 528.0
+theme_override_constants/line_spacing = 100
+theme_override_font_sizes/font_size = 45
+text = "E-MAIL
+SETTINGS
+INTERNET"
+horizontal_alignment = 1
+
+[node name="emailButton" type="Button" parent="Control/startMenu"]
+layout_mode = 0
+offset_left = 336.0
+offset_right = 408.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 40
+text = "@"
+
+[node name="Area2D" type="Area2D" parent="Control/startMenu/emailButton" groups=["isButton"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/startMenu/emailButton/Area2D"]
+position = Vector2(36, 32)
+shape = SubResource("RectangleShape2D_n6hdu")
+
+[node name="fileButton" type="Button" parent="Control/startMenu"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 160.0
+offset_right = 408.0
+offset_bottom = 223.0
+theme_override_font_sizes/font_size = 40
+text = "S"
+
+[node name="Area2D" type="Area2D" parent="Control/startMenu/fileButton" groups=["isButton"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/startMenu/fileButton/Area2D"]
+position = Vector2(36, 32)
+shape = SubResource("RectangleShape2D_n6hdu")
+
+[node name="internetButton" type="Button" parent="Control/startMenu"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 328.0
+offset_right = 408.0
+offset_bottom = 391.0
+theme_override_font_sizes/font_size = 40
+text = "O"
+
+[node name="Area2D" type="Area2D" parent="Control/startMenu/internetButton" groups=["isButton"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/startMenu/internetButton/Area2D"]
+position = Vector2(36, 32)
+shape = SubResource("RectangleShape2D_n6hdu")
+
+[node name="powerButton" type="Button" parent="Control/startMenu"]
+layout_mode = 0
+offset_top = 416.0
+offset_right = 408.0
+offset_bottom = 528.0
+text = "⏻"
+
+[node name="Area2D" type="Area2D" parent="Control/startMenu/powerButton" groups=["isButton"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/startMenu/powerButton/Area2D"]
+position = Vector2(204, 56)
+shape = SubResource("RectangleShape2D_km5ld")
+
+[node name="emailWindow" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_left = 544.0
+offset_top = 280.0
+offset_right = 584.0
+offset_bottom = 320.0
+
+[node name="ColorRect" type="ColorRect" parent="Control/emailWindow"]
+layout_mode = 0
+offset_right = 899.0
+offset_bottom = 632.0
+color = Color(0.737193, 0.737193, 0.737193, 1)
+
+[node name="closeButton" type="Button" parent="Control/emailWindow/ColorRect"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="closeButtonSprite" type="Sprite2D" parent="Control/emailWindow/ColorRect/closeButton"]
+position = Vector2(867, 32)
+texture = ExtResource("6_km5ld")
+
+[node name="Area2D" type="Area2D" parent="Control/emailWindow/ColorRect/closeButton" groups=["isButton"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/emailWindow/ColorRect/closeButton/Area2D"]
+position = Vector2(864, 32)
+shape = SubResource("RectangleShape2D_i2t4f")
+
+[node name="titleLabel" type="Label" parent="Control/emailWindow/ColorRect"]
+layout_mode = 0
+offset_right = 832.0
+offset_bottom = 64.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 43
+text = "E-Mail"
+
+[node name="composeButton" type="Button" parent="Control/emailWindow/ColorRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 480.0
+offset_right = 424.0
+offset_bottom = 624.0
+theme_override_font_sizes/font_size = 60
+text = "COMPOSE"
+
+[node name="Area2D" type="Area2D" parent="Control/emailWindow/ColorRect/composeButton" groups=["isButton"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/emailWindow/ColorRect/composeButton/Area2D"]
+position = Vector2(207, 71)
+shape = SubResource("RectangleShape2D_8cye3")
+
+[node name="emailBox" type="ColorRect" parent="Control/emailWindow/ColorRect"]
+visible = false
+layout_mode = 0
+offset_left = 32.0
+offset_top = 80.0
+offset_right = 872.0
+offset_bottom = 472.0
+
+[node name="content" type="Label" parent="Control/emailWindow/ColorRect/emailBox"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 72.0
+offset_right = 800.0
+offset_bottom = 360.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Hey buddy, check out this cool new Limp Bizkit album :-)"
+
+[node name="sender" type="Label" parent="Control/emailWindow/ColorRect/emailBox"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 240.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "TO: big@boris.com
+FROM: warting@willis.com"
+
+[node name="attachment" type="Label" parent="Control/emailWindow/ColorRect/emailBox"]
+layout_mode = 0
+offset_top = 295.0
+offset_right = 352.0
+offset_bottom = 375.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Attachment:"
+
+[node name="attachmentButton" type="Button" parent="Control/emailWindow/ColorRect/emailBox"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 288.0
+offset_right = 344.0
+offset_bottom = 376.0
+
+[node name="Area2D" type="Area2D" parent="Control/emailWindow/ColorRect/emailBox/attachmentButton" groups=["isButton"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/emailWindow/ColorRect/emailBox/attachmentButton/Area2D" groups=["isButton"]]
+position = Vector2(43.5, 44.5)
+shape = SubResource("RectangleShape2D_2orkt")
+
+[node name="settingsWindow" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control/settingsWindow"]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 136.0
+offset_right = 1608.0
+offset_bottom = 856.0
+color = Color(0.654232, 0.654232, 0.654232, 1)
+
+[node name="buttons" type="Control" parent="Control/settingsWindow/ColorRect"]
+anchors_preset = 0
+
+[node name="wallpaperButton" type="Button" parent="Control/settingsWindow/ColorRect/buttons"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 120.0
+offset_right = 424.0
+offset_bottom = 632.0
+theme_override_font_sizes/font_size = 38
+text = "WALLPAPER"
+icon = ExtResource("8_2orkt")
+icon_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="Control/settingsWindow/ColorRect/buttons/wallpaperButton" groups=["isButton"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/settingsWindow/ColorRect/buttons/wallpaperButton/Area2D"]
+position = Vector2(184, 256)
+shape = SubResource("RectangleShape2D_aicyk")
+
+[node name="brightness" type="Label" parent="Control/settingsWindow/ColorRect/buttons"]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 120.0
+offset_right = 856.0
+offset_bottom = 632.0
+theme_override_font_sizes/font_size = 38
+text = "BRIGHTNESS - 100%"
+
+[node name="minusButton" type="Button" parent="Control/settingsWindow/ColorRect/buttons/brightness"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 96.0
+offset_bottom = 128.0
+text = "-10%"
+
+[node name="Area2D" type="Area2D" parent="Control/settingsWindow/ColorRect/buttons/brightness/minusButton" groups=["isButton"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/settingsWindow/ColorRect/buttons/brightness/minusButton/Area2D"]
+position = Vector2(48, 32)
+shape = SubResource("RectangleShape2D_h6smj")
+
+[node name="plusButton" type="Button" parent="Control/settingsWindow/ColorRect/buttons/brightness"]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 64.0
+offset_right = 360.0
+offset_bottom = 128.0
+text = "+10%"
+
+[node name="Area2D" type="Area2D" parent="Control/settingsWindow/ColorRect/buttons/brightness/plusButton" groups=["isButton"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/settingsWindow/ColorRect/buttons/brightness/plusButton/Area2D"]
+position = Vector2(48, 32)
+shape = SubResource("RectangleShape2D_h6smj")
+
+[node name="passwordButton" type="Button" parent="Control/settingsWindow/ColorRect/buttons"]
+layout_mode = 0
+offset_left = 896.0
+offset_top = 120.0
+offset_right = 1288.0
+offset_bottom = 632.0
+theme_override_font_sizes/font_size = 38
+text = "CHANGE PASSWORD"
+
+[node name="Area2D" type="Area2D" parent="Control/settingsWindow/ColorRect/buttons/passwordButton" groups=["isButton"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/settingsWindow/ColorRect/buttons/passwordButton/Area2D"]
+position = Vector2(188, 256)
+shape = SubResource("RectangleShape2D_aicyk")
+
+[node name="wallpaper" type="ColorRect" parent="Control/settingsWindow/ColorRect"]
+visible = false
+layout_mode = 0
+offset_left = 48.0
+offset_top = 56.0
+offset_right = 1264.0
+offset_bottom = 664.0
+color = Color(0.404511, 0.404511, 0.404511, 1)
+
+[node name="wallpaper1" type="Button" parent="Control/settingsWindow/ColorRect/wallpaper"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 392.0
+offset_bottom = 252.0
+icon = ExtResource("9_aicyk")
+flat = true
+
+[node name="Area2D" type="Area2D" parent="Control/settingsWindow/ColorRect/wallpaper/wallpaper1" groups=["isButton"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/settingsWindow/ColorRect/wallpaper/wallpaper1/Area2D"]
+position = Vector2(164, 92)
+shape = SubResource("RectangleShape2D_8b0r0")
+
+[node name="wallpaper2" type="Button" parent="Control/settingsWindow/ColorRect/wallpaper"]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 64.0
+offset_right = 824.0
+offset_bottom = 252.0
+icon = ExtResource("10_8b0r0")
+flat = true
+
+[node name="Area2D" type="Area2D" parent="Control/settingsWindow/ColorRect/wallpaper/wallpaper2" groups=["isButton"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/settingsWindow/ColorRect/wallpaper/wallpaper2/Area2D"]
+position = Vector2(164, 92)
+shape = SubResource("RectangleShape2D_8b0r0")
+
+[node name="closeButton2" type="Button" parent="Control/settingsWindow/ColorRect"]
+layout_mode = 0
+offset_left = 424.0
+offset_right = 432.0
+offset_bottom = 8.0
+
+[node name="closeButtonSprite" type="Sprite2D" parent="Control/settingsWindow/ColorRect/closeButton2"]
+position = Vector2(867, 32)
+texture = ExtResource("6_km5ld")
+
+[node name="Area2D" type="Area2D" parent="Control/settingsWindow/ColorRect/closeButton2" groups=["isButton"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/settingsWindow/ColorRect/closeButton2/Area2D"]
+position = Vector2(864, 32)
+shape = SubResource("RectangleShape2D_i2t4f")
+
+[node name="backButton" type="Button" parent="Control/settingsWindow/ColorRect"]
+layout_mode = 0
+offset_left = 424.0
+offset_right = 432.0
+offset_bottom = 8.0
+
+[node name="closeButtonSprite" type="Sprite2D" parent="Control/settingsWindow/ColorRect/backButton"]
+position = Vector2(-392, 32)
+texture = ExtResource("8_2orkt")
+
+[node name="Area2D" type="Area2D" parent="Control/settingsWindow/ColorRect/backButton" groups=["isButton"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/settingsWindow/ColorRect/backButton/Area2D"]
+position = Vector2(-392, 32)
+shape = SubResource("RectangleShape2D_i2t4f")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_vonw3")]
+position = Vector2(904, 492)
+
+[node name="antivirus" parent="." instance=ExtResource("6_1ainy")]
+position = Vector2(2416, 361)
+
+[node name="tasks" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="score" type="Label" parent="tasks"]
+offset_left = 688.0
+offset_right = 1192.0
+offset_bottom = 248.0
+theme_override_font_sizes/font_size = 80
+text = "0"
+horizontal_alignment = 1
+
+[node name="tasks" type="ColorRect" parent="tasks"]
+offset_left = 1472.0
+offset_right = 1920.0
+offset_bottom = 344.0
+color = Color(0.627451, 0.529412, 0.690196, 0.607843)
+
+[node name="time" type="Label" parent="tasks"]
+offset_left = 1472.0
+offset_right = 1920.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 50
+text = "TIME LEFT: "
+script = ExtResource("7_i2t4f")
+
+[node name="deathTimer" type="Timer" parent="tasks/time"]
+wait_time = 45.0
+autostart = true
+
+[node name="taskOne" type="Label" parent="tasks"]
+offset_left = 1472.0
+offset_top = 64.0
+offset_right = 1916.0
+offset_bottom = 192.0
+theme_override_font_sizes/font_size = 30
+text = "DELETE IMPORTANT FILES (0/5)"
+
+[node name="taskTwo" type="Label" parent="tasks"]
+offset_left = 1472.0
+offset_top = 112.0
+offset_right = 1920.0
+offset_bottom = 154.0
+theme_override_font_sizes/font_size = 30
+text = "CHANGE WALLPAPER"
+
+[node name="taskThree" type="Label" parent="tasks"]
+offset_left = 1472.0
+offset_top = 160.0
+offset_right = 1920.0
+offset_bottom = 202.0
+theme_override_font_sizes/font_size = 30
+text = "LOWER BRIGHTNESS TO 10%"
+
+[node name="escape" type="Label" parent="tasks"]
+offset_left = 1472.0
+offset_top = 264.0
+offset_right = 1920.0
+offset_bottom = 344.0
+theme_override_font_sizes/font_size = 25
+text = "Email yourself to someone else!"
+horizontal_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="brightness" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0)
+
+[node name="success" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_8b0r0")
+
+[node name="start" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_h6smj")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_v5j5c")
+volume_db = -30.0
+
+[connection signal="pressed" from="Control/taskbar/startButton" to="Control" method="_on_start_button_pressed"]
+[connection signal="pressed" from="Control/startMenu/emailButton" to="Control" method="_on_email_button_pressed"]
+[connection signal="pressed" from="Control/startMenu/fileButton" to="Control" method="_on_file_button_pressed"]
+[connection signal="pressed" from="Control/startMenu/powerButton" to="Control" method="_on_power_button_pressed"]
+[connection signal="pressed" from="Control/emailWindow/ColorRect/closeButton" to="Control" method="_on_close_button_pressed"]
+[connection signal="pressed" from="Control/emailWindow/ColorRect/composeButton" to="Control" method="_on_compose_button_pressed"]
+[connection signal="pressed" from="Control/emailWindow/ColorRect/emailBox/attachmentButton" to="." method="_on_attachment_button_pressed"]
+[connection signal="pressed" from="Control/settingsWindow/ColorRect/buttons/wallpaperButton" to="Control" method="_on_wallpaper_button_pressed"]
+[connection signal="pressed" from="Control/settingsWindow/ColorRect/buttons/brightness/minusButton" to="." method="_on_minus_button_pressed"]
+[connection signal="pressed" from="Control/settingsWindow/ColorRect/buttons/brightness/plusButton" to="." method="_on_plus_button_pressed"]
+[connection signal="pressed" from="Control/settingsWindow/ColorRect/wallpaper/wallpaper1" to="." method="_on_wallpaper_1_pressed"]
+[connection signal="pressed" from="Control/settingsWindow/ColorRect/wallpaper/wallpaper2" to="." method="_on_wallpaper_2_pressed"]
+[connection signal="pressed" from="Control/settingsWindow/ColorRect/closeButton2" to="." method="_on_close_button_2_pressed"]
+[connection signal="pressed" from="Control/settingsWindow/ColorRect/backButton" to="Control" method="_on_back_button_pressed"]
+[connection signal="death" from="CharacterBody2D" to="." method="_on_character_body_2d_death"]
+[connection signal="taskCompleted" from="CharacterBody2D" to="." method="_on_character_body_2d_task_completed"]
+[connection signal="timeout" from="tasks/time/deathTimer" to="." method="_on_death_timer_timeout"]

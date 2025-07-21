@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpo7p7vw5ydjt"]
+
+[ext_resource type="Script" uid="uid://biidfrqux5r8g" path="res://start_screen.gd" id="1_ncxyx"]
+
+[sub_resource type="Gradient" id="Gradient_ncxyx"]
+offsets = PackedFloat32Array(0.0240964, 1)
+colors = PackedColorArray(0.339764, 0.712836, 0.844797, 1, 0.787914, 0.434853, 0.727409, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pevhg"]
+gradient = SubResource("Gradient_ncxyx")
+
+[node name="startScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ncxyx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1936.0
+offset_bottom = 1080.0
+texture = SubResource("GradientTexture1D_pevhg")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_top = 496.0
+offset_right = 1928.0
+offset_bottom = 1088.0
+text = "START"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 496.0
+theme_override_font_sizes/font_size = 100
+text = "RAT"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

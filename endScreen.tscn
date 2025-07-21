@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://reddqqf2d8aw"]
+
+[ext_resource type="Script" uid="uid://c1856iwyjcpo3" path="res://end_screen.gd" id="1_womtn"]
+[ext_resource type="AudioStream" uid="uid://dpq0rikler3" path="res://sfx/eating.mp3" id="2_met5o"]
+
+[sub_resource type="Gradient" id="Gradient_met5o"]
+colors = PackedColorArray(0.424481, 0.454027, 0.703798, 1, 0.74978, 0.74978, 0.74978, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_670qs"]
+gradient = SubResource("Gradient_met5o")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_womtn")
+
+[node name="ColorRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = SubResource("GradientTexture1D_670qs")
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 608.0
+theme_override_font_sizes/font_size = 200
+text = "Final Score:
+"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_top = 576.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_font_sizes/font_size = 100
+text = "Play Again?"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_met5o")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1928.0
+offset_bottom = 1088.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
